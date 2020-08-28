@@ -66,6 +66,15 @@ void pop(node **top)
 		free(temp);
 	}
 }
+void peek(node *top)
+{
+	if(top)
+	{
+		printf("%d  \n",top->data);
+		return ;
+	}
+	printf("Stack Empty!\n");
+}
 int main()
 {
 	node *top=NULL;
@@ -73,9 +82,8 @@ int main()
 	int num;
 		while(num!=-1)
 		{
-			num=24;
-			//printf("Enter Number: \n");
-			//scanf("%d",&num);
+			printf("Enter Number: \n");
+			scanf("%d",&num);
 			if(num==-1)
 			{
 				break;
@@ -89,6 +97,8 @@ int main()
 				push(&top,num);
 			}
 			display_stack(top);
+			printf("Peek: \n");
+			peek(top);
 		}
 	return 0;
 }
