@@ -43,6 +43,38 @@ void display_list(node *head)
 		}
 	}
 }
+void insert_pos(node **head,int val,int pos){
+    node *new_node=(node*)malloc(sizeof(node));
+    new_node->data=val;
+    new_node->next=NULL;
+    new_node->prev=NULL;
+    node *curr,*curr_next,*curr_prev;
+    if(pos==1){
+        if(*head==NULL){
+            //new_node=*head;
+            *head = new_node;
+        }
+        else{
+            new_node->next=*head;
+            (*head)->prev=new_node;
+            *head=new_node;
+        }
+        return ;
+    }
+    else{
+        curr=*head;
+        //printf("%d",curr->data);
+        for(int i=1;i<pos;i++){
+            curr=curr->next;
+            curr_prev=curr->prev;
+			curr_next=curr->next;
+        }
+        curr_prev->next=new_node;
+        new_node->next=curr;
+        curr->prev=new_node;
+        new_node->prev=curr_prev;
+    }
+}
 void delete_by_val(node **head,int val)
 {
 	if((*head)->data ==  val)
@@ -71,6 +103,7 @@ int main()
 	insert_node(&head,10);
 	insert_node(&head,20);
 	insert_node(&head,30);
-	delete_by_val(&head,20);
+	//delete_by_val(&head,20);
+	insert_pos(&head,50,3);
 	display_list(head);
 }
