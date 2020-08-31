@@ -57,7 +57,7 @@ int check_expression(node **top,char *s)
 		if(!check_oper_alpha(curr))
 		{
 			//printf("if");
-			if(curr=='(')
+			if(curr=='(' || curr=='{')
 			{
 				push(top,curr);
 			}
@@ -65,7 +65,7 @@ int check_expression(node **top,char *s)
 			{
 				if(isEmpty(*top))
 					return -1;
-				else if(peek(*top)=='(')
+				else if(peek(*top)=='(' || peek(*top)=='{')
 					pop(top);
 				else
 					return -1;

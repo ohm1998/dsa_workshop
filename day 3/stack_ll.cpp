@@ -48,7 +48,7 @@ int is_empty(node *top)
 {
 	if(top==NULL)
 	{
-		printf("Stack Underflow");
+		//printf("Stack Underflow");
 		return 1;
 	}
 	return 0;
@@ -75,6 +75,19 @@ void peek(node *top)
 	}
 	printf("Stack Empty!\n");
 }
+void reverse_stack(node **top)
+{
+	node *temp = NULL;
+	while(!is_empty(*top))
+	{
+		int ele = (*top)->data;
+		push(&temp,ele);
+		pop(top);	
+	}
+	node *orig_top = *top;
+	*top = temp;
+	free(orig_top);
+}
 int main()
 {
 	node *top=NULL;
@@ -92,13 +105,17 @@ int main()
 			{
 				pop(&top);
 			}
+			else if(num==-3)
+			{
+				reverse_stack(&top);
+			}
 			else
 			{
 				push(&top,num);
 			}
 			display_stack(top);
-			printf("Peek: \n");
-			peek(top);
+			//printf("Peek: \n");
+			//peek(top);
 		}
 	return 0;
 }
